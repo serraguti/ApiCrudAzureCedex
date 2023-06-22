@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //DEBEMOS PERSONALIZAR/DOCUMENTAR QUIENES SOMOS EN SWAGGER
+//builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -25,7 +26,8 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Contact = new OpenApiContact()
         {
-             Name = "Paco Garcia Serrano", Email = "pacoserranox@gmail.com"
+            Name = "Paco Garcia Serrano",
+            Email = "pacoserranox@gmail.com"
         }
     });
 });
@@ -34,8 +36,8 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "Api V1 Azure");
-    options.RoutePrefix = "";
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
 });
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
